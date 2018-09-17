@@ -1,27 +1,18 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Sep 13 21:16:56 2018
 
-@author: Gehaha
-"""
+# Form implementation generated from reading ui file 'Calculator2.ui'
+#
+# Created by: PyQt5 UI code generator 5.9.2
+#
+# WARNING! All changes made in this file will be lost!
+import sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import re
-from PyQt5.QtWidgets import QApplication ,QWidget,QPushButton,QLineEdit
-import sys
-from PyQt5.QtCore import Qt
 
-
-class Calculater(object):
+class Ui_MainWindow(object):
     def __init__(self):
-         # 设置显示区域的值,value1用于默认数字0
-        #self.value1 = tkinter.StringVar()
-        self.value1.set('0')
-        #value2用于显示计算过程
-        #self.value2 = tkinter.StringVar()
-        self.value2.set('')
-
-        # 定义一个变量，确定是否按下运算符号,默认没有按下
+        
+         # 定义一个变量，确定是否按下运算符号,默认没有按下
         self.ispresign = False
         
         # 定义一个变量，储存输入的数字
@@ -32,11 +23,13 @@ class Calculater(object):
         
         # 定义一个变量记录是否按下了特殊符号的变量
         self.specialsign = 0
-    
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("Mini计算器")
-        MainWindow.resize(324, 430)
         
+        
+        
+        
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(330, 418)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.Button3 = QtWidgets.QPushButton(self.centralwidget)
@@ -111,15 +104,15 @@ class Calculater(object):
         self.Button5.setGeometry(QtCore.QRect(70, 200, 51, 51))
         self.Button5.setStyleSheet("font: 75 14pt \"Arial\";")
         self.Button5.setObjectName("Button5")
-        
-        #显示区   
-        self.display = QtWidgets.QTextEdit(self.centralwidget)
-        self.display.setGeometry(QtCore.QRect(10, 10, 291, 121))
-        self.display.setObjectName("textEdit")
-        
+        self.textEdit = QtWidgets.QTextEdit(self.centralwidget)
+        self.textEdit.setGeometry(QtCore.QRect(10, 10, 291, 71))
+        self.textEdit.setObjectName("textEdit")
+        self.textEdit_2 = QtWidgets.QTextEdit(self.centralwidget)
+        self.textEdit_2.setGeometry(QtCore.QRect(10, 80, 291, 51))
+        self.textEdit_2.setObjectName("textEdit_2")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 324, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 330, 23))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -133,64 +126,61 @@ class Calculater(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Mini计算器"))
         self.Button3.setText(_translate("MainWindow", "3"))
-        self.Button3.clicked.connect(self.pressnum('3'))
+        self.Button3.clicked.connect(self.pressnum)
         
         self.Button2.setText(_translate("MainWindow", "2"))
-        self.Button2.clicked.connect(self.pressnum('2'))
+        self.Button2.clicked.connect(self.pressnum)
         
         self.Button4.setText(_translate("MainWindow", "4"))
-        self.Button4.clicked.connect(self.pressnum('4'))
+        self.Button4.clicked.connect(self.pressnum)
         
         self.ButtonCE.setText(_translate("MainWindow", "CE"))
-        self.ButtonCE.clicked.connect(self.special('CE'))
+        self.ButtonCE.clicked.connect(self.special)
         
         self.ButtonChu.setText(_translate("MainWindow", "÷"))
-        self.ButtonChu.clicked.connect(self.presign('÷'))
+        self.ButtonChu.clicked.connect(self.presign)
         
         self.ButtonJian.setText(_translate("MainWindow", "-"))
-        self.ButtonJian.clicked.connect(self.presign('-'))
+        self.ButtonJian.clicked.connect(self.presign)
         
         self.ButtonDeng.setText(_translate("MainWindow", "="))
-        self.ButtonDeng.clicked.connect(self.presseq('='))
+        self.ButtonDeng.clicked.connect(self.presseq)
         
         self.Button8.setText(_translate("MainWindow", "8"))
-        self.Button8.clicked.connect(self.pressnum('8'))
+        self.Button8.clicked.connect(self.pressnum)
         
         self.ButtoncCheng.setText(_translate("MainWindow", "×"))
-        self.ButtoncCheng.clicked.connect(self.presign('×'))
+        self.ButtoncCheng.clicked.connect(self.presign)
         
         self.Button7.setText(_translate("MainWindow", "7"))
-        self.Button7.clicked.connect(self.pressnum('7'))
+        self.Button7.clicked.connect(self.pressnum)
         
         self.Button0.setText(_translate("MainWindow", "0"))
-        self.Button0.clicked.connect(self.pressnum('0'))
+        self.Button0.clicked.connect(self.pressnum)
         
         self.Button9.setText(_translate("MainWindow", "9"))
-        self.Button9.clicked.connect(self.pressnum('9'))
+        self.Button9.clicked.connect(self.pressnum)
         
         self.Button1.setText(_translate("MainWindow", "1"))
-        self.Button1.clicked.connect(self.pressnum('1'))
+        self.Button1.clicked.connect(self.pressnum)
         
         self.ButtonDot.setText(_translate("MainWindow", "."))
-        self.ButtonDot.clicked.connect(self.pressnum('.'))
+        self.ButtonDot.clicked.connect(self.pressnum)
         
         self.ButtonJia.setText(_translate("MainWindow", "+"))
-        self.ButtonJia.clicked.connect(self.pressnum('+'))
+        self.ButtonJia.clicked.connect(self.pressnum
         
         self.Button6.setText(_translate("MainWindow", "6"))
-        self.Button6.clicked.connect(self.pressnum('6'))
+        self.Button6.clicked.connect(self.pressnum)
         
         self.ButtonDel.setText(_translate("MainWindow", "Del"))
-        self.ButtonDel.clicked.connect(self.special('Del'))
+        self.ButtonDel.clicked.connect(self.special)
         
         self.Button5.setText(_translate("MainWindow", "5"))
-        self.Button5.clicked.connect(self.pressnum('5'))
-        self.textEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">0</span></p></body></html>"))
-    # 按下数字的函数
+        self.Button5.clicked.connect(self.pressnum)
+        
+    """
+        # 按下数字的函数
     def pressnum(self,num):
         
         # 判断是否按下了运算符号
@@ -327,13 +317,14 @@ class Calculater(object):
                     self.numlist.clear()
         # 将是否按下等号的标志设置为已按（用1表示）
         self.isequalsign = 1
+    """
 
 #调用程序    
 if __name__ == '__main__':
     
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Calculater()
+    ui = Ui_MainWindow()
     ui.setupUi(MainWindow)     
     MainWindow.show() 
     sys.exit(app.exec_()) 
