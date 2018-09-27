@@ -113,7 +113,7 @@ class Calculater:
         show2.place(y=20, width=245, height=40)
                 
 #定义一个输入接口类，所有的数字和字符都由此接口继承        
-class Calculater_operation:
+class Calculater_operation(Calculater):
     def pressnum(self,num):
         pass
 
@@ -163,7 +163,7 @@ class getnum(Calculater_operation):
             
             
 #定义一个运算接口类，所有的运算都由此继承
-class Character_sign:
+class Character_sign(Calculater):
     def presign(self,sign):
         pass
     def special(self,sign):

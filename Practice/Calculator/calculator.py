@@ -3,7 +3,7 @@
 import tkinter
 import math
 
-class calculator(self):
+class calculator:
     def __init__(self):
         #初始化主界面
         self.root = tkinter.Tk()
