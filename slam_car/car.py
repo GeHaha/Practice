@@ -6,10 +6,25 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+import serial
+import threading
+import binascii 
+from PyQt5 import QtCore, QtGui, QtWidgets
+import serial.tools.list_ports
+from PyQt5.QtWidgets import QFileDialog ,QDialog,QWidget
+ 
+
+import numpy as np 
+from matplotlib import pyplot as plt
+from matplotlib import animation
+from matplotlib.patches import Circle
+import time
+import math
+
 
 class Ui_MainWindow(object):
+    ser = serial.Serial()
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(998, 719)
@@ -255,16 +270,16 @@ class Ui_MainWindow(object):
         self.Hex2_radioButton.setText(_translate("MainWindow", "Hex"))
         self.send_checkBox_2.setText(_translate("MainWindow", "自动发送"))
         self.send_groupBox.setTitle(_translate("MainWindow", "发送设置"))
-        self.TCPgroupBox.setTitle(_translate("MainWindow", "网络通讯"))
-        self.OpenPort.setText(_translate("MainWindow", "打开串口"))
-        self.ClosePort.setText(_translate("MainWindow", "关闭串口"))
-        self.OpenFile.setText(_translate("MainWindow", "打开文件"))
-        self.SendFile.setText(_translate("MainWindow", "发送文件"))
-        self.OpenServer.setText(_translate("MainWindow", "开启服务器"))
-        self.ConnectServer.setText(_translate("MainWindow", "连接服务器"))
-        self.ClearRecieve.setText(_translate("MainWindow", "清除接收"))
-        self.ClearSend.setText(_translate("MainWindow", "清除发送"))
-        self.Send.setText(_translate("MainWindow", "发送"))
+        self.TCPgroupBox.setTitle(_translate("MainWindow", "网络通讯"))        
+        self.OpenPort.setText(_translate("MainWindow", "打开串口"))           
+        self.ClosePort.setText(_translate("MainWindow", "关闭串口"))       
+        self.OpenFile.setText(_translate("MainWindow", "打开文件"))              
+        self.SendFile.setText(_translate("MainWindow", "发送文件"))                
+        self.OpenServer.setText(_translate("MainWindow", "开启服务器"))               
+        self.ConnectServer.setText(_translate("MainWindow", "连接服务器"))             
+        self.ClearRecieve.setText(_translate("MainWindow", "清除接收"))             
+        self.ClearSend.setText(_translate("MainWindow", "清除发送"))        
+        self.Send.setText(_translate("MainWindow", "发送"))    
         self.SendgroupBox.setTitle(_translate("MainWindow", "接收区"))
         self.SendgroupBox_2.setTitle(_translate("MainWindow", "发送区"))
         self.HeadButton.setText(_translate("MainWindow", "前进"))
@@ -320,7 +335,7 @@ class Ui_MainWindow(object):
         self.Stop_comboBox.setItemText(1, _translate("MainWindow", "1.5"))
         self.Stop_comboBox.setItemText(2, _translate("MainWindow", "2"))
         self.StatuLab.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">状态</span></p></body></html>"))
-        self.CheckStaLab.setText(_translate("MainWindow", ""<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">串口状态</span></p></body></html>"))
+        self.CheckStaLab.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">串口状态</span></p></body></html>"))
         self.menu.setTitle(_translate("MainWindow", "文件"))
         self.menu_2.setTitle(_translate("MainWindow", "编辑 "))
 

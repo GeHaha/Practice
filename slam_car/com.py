@@ -4,18 +4,28 @@ Created on Mon Oct  1 11:16:50 2018
 
 @author: Gehaha
 """
-from Car import Ui_MainWindow
+import sys
+from car import Ui_MainWindow
 import binascii
 import threading
-import serial.tools.list_ports
+import serial
 import socket
 from PyQt5 import QtCore,QtGui,QtWidgets
 from PyQt5.QtWidgets import QFileDialog ,QDialog,QWidget
- 
+sys.path.append('D:\Practice\10.2')
 
-class serial_data(Ui_MainWindow):
-    ser = serial.Serial()
-    
+class serial_data( QtWidgets.QMainWindow,Ui_MainWindow):
+    def __init__(self):
+        super(serial_data,self).__init__()
+        self.setupUi(self)
+        self.OpenPort.connect(self.port_open)
+        self.ClosePort.clicked.connect(self.port_close)
+        self.OpenFile.clicked.connect(self.open_file)
+        self.SendFile.clicked.connect(self.send_file)
+        self.OpenServer.clicked.connect(self.open_server)
+        self.ConnectServer.clicked.connect(self.connect_server)
+        self.ClearRecieve.clicked.connect(self.clear)
+        self.Send.clicked.connect(self.send_data)
     #检查串口
     def port_check(self):
         Com_List = []
@@ -29,7 +39,7 @@ class serial_data(Ui_MainWindow):
             
                 
     #打开串口
-    def prot_open(self):
+    def port_open(self):
         self.ser.port = self.Port_comboBox.currentText()
         self.ser.baudrate = self.Baud_comboBox.currentText()
         self.ser.bytesize = int(self.Data_comboBox.currentText())
