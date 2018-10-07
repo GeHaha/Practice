@@ -5,7 +5,7 @@ Created on Mon Oct  1 11:16:50 2018
 @author: Gehaha
 """
 import sys
-from car import Ui_MainWindow
+from Slam_Car import Ui_MainWindow
 import binascii
 import threading
 import serial
@@ -14,18 +14,13 @@ from PyQt5 import QtCore,QtGui,QtWidgets
 from PyQt5.QtWidgets import QFileDialog ,QDialog,QWidget
 sys.path.append('D:\Practice\10.2')
 
-class serial_data( QtWidgets.QMainWindow,Ui_MainWindow):
+class serial_data(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self):
         super(serial_data,self).__init__()
         self.setupUi(self)
-        self.OpenPort.connect(self.port_open)
-        self.ClosePort.clicked.connect(self.port_close)
-        self.OpenFile.clicked.connect(self.open_file)
-        self.SendFile.clicked.connect(self.send_file)
-        self.OpenServer.clicked.connect(self.open_server)
-        self.ConnectServer.clicked.connect(self.connect_server)
-        self.ClearRecieve.clicked.connect(self.clear)
-        self.Send.clicked.connect(self.send_data)
+
+
+        
     #检查串口
     def port_check(self):
         Com_List = []
