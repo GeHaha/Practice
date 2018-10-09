@@ -4,7 +4,7 @@ Created on Wed Oct  3 12:22:08 2018
 
 @author: Gehaha
 """
-from car import Ui_MainWindow
+from SlamCar2 import Ui_MainWindow
 import serial
 import binascii
 import serial.tools.list_ports
@@ -14,9 +14,19 @@ from PyQt5.QtWidgets import QFileDialog ,QDialog,QWidget
 from math import radians ,copysign
 import rospy
 
-class slam_car(Ui_MainWindow):
-    #小车调度系统
-      
+
+#小车调度系统
+class slam_car(QtWidgets.QMainWindow,Ui_MainWindow):
+    def __init__(self):
+        super(slam_car,self).__init__()
+        self.setupUi(self)
+        self.OpenFile.clicked.connect(self.open_file)
+        self.SendFile.clicked.connect(self.send_file)
+        
+        self.GetLocaButton.clicked.connect(self.get_location)
+        self.sendMsgButton.connect(self.send_message)
+        
+
     #得到位置信息
     def get_location(self):
         
@@ -31,7 +41,6 @@ class slam_car(Ui_MainWindow):
             self.CheckStaLab.setText("位置获取失败")
       
     def recieve_location(self):
-        
         #假如定义一个头部信息
         head_data = [0x10,0x20,0x30]     
         location_data = []
@@ -53,20 +62,10 @@ class slam_car(Ui_MainWindow):
                 self.RectextEdit.moveCursor(QtGui.QTextCursor.End)
                 #怎么验证CRC                
                 self.ser.flushInput()
-                
-    #小车移动的坐标
-    def distance(self):
+   # 发送小车需要的角度、速度、坐标 
+    def send_message(self):
         pass
-            
    
-    #小车移动的速度
-    def speed(self):
-        pass
-    #小车移动的角度
-    def angle(self):
-        self.test_angle = radians(rospy.get_param(',360'))
-    
-    def pause(self):
-        pass
+     
     
     

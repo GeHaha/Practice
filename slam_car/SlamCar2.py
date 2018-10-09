@@ -6,36 +6,13 @@
 #
 # WARNING! All changes made in this file will be lost!
 import sys
-import serial
-import threading
-import binascii 
-from PyQt5 import QtCore, QtGui, QtWidgets
-import serial.tools.list_ports
-from PyQt5.QtWidgets import QFileDialog ,QDialog,QWidget
- 
-
-import numpy as np 
-from matplotlib import pyplot as plt
-from matplotlib import animation
-from matplotlib.patches import Circle
-from time import ctime
-
-import math
-
-import socket
-import sys
-
-
-from time import sleep
-import multiprocessing
-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1008, 732)
+        MainWindow.resize(764, 732)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.Recive_groupBox = QtWidgets.QGroupBox(self.centralwidget)
@@ -71,24 +48,14 @@ class Ui_MainWindow(object):
         self.Send = QtWidgets.QPushButton(self.centralwidget)
         self.Send.setGeometry(QtCore.QRect(20, 660, 75, 23))
         self.Send.setObjectName("Send")
-        self.AngleButton = QtWidgets.QPushButton(self.centralwidget)
-        self.AngleButton.setGeometry(QtCore.QRect(800, 30, 75, 23))
-        self.AngleButton.setObjectName("AngleButton")
-        self.velocityButton = QtWidgets.QPushButton(self.centralwidget)
-        self.velocityButton.setGeometry(QtCore.QRect(890, 30, 75, 23))
-        self.velocityButton.setObjectName("velocityButton")
-        self.GetLocaButton = QtWidgets.QPushButton(self.centralwidget)
-        self.GetLocaButton.setGeometry(QtCore.QRect(800, 60, 75, 23))
-        self.GetLocaButton.setObjectName("GetLocaButton")
-        self.RightButton = QtWidgets.QPushButton(self.centralwidget)
-        self.RightButton.setGeometry(QtCore.QRect(890, 60, 75, 23))
-        self.RightButton.setText("")
-        self.RightButton.setObjectName("RightButton")
+        self.sendMsgButton = QtWidgets.QPushButton(self.centralwidget)
+        self.sendMsgButton.setGeometry(QtCore.QRect(430, 510, 75, 31))
+        self.sendMsgButton.setObjectName("sendMsgButton")
         self.PortgroupBox = QtWidgets.QGroupBox(self.centralwidget)
         self.PortgroupBox.setGeometry(QtCore.QRect(10, 10, 191, 181))
         self.PortgroupBox.setObjectName("PortgroupBox")
         self.StopButton = QtWidgets.QPushButton(self.centralwidget)
-        self.StopButton.setGeometry(QtCore.QRect(800, 90, 75, 23))
+        self.StopButton.setGeometry(QtCore.QRect(430, 550, 75, 31))
         self.StopButton.setObjectName("StopButton")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget.setGeometry(QtCore.QRect(30, 420, 161, 100))
@@ -226,17 +193,17 @@ class Ui_MainWindow(object):
         self.groupBox.setGeometry(QtCore.QRect(9, 301, 191, 91))
         self.groupBox.setObjectName("groupBox")
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setGeometry(QtCore.QRect(210, 10, 571, 411))
+        self.groupBox_2.setGeometry(QtCore.QRect(210, 10, 511, 301))
         self.groupBox_2.setObjectName("groupBox_2")
         self.RectextEdit = QtWidgets.QTextEdit(self.groupBox_2)
-        self.RectextEdit.setGeometry(QtCore.QRect(10, 20, 551, 381))
+        self.RectextEdit.setGeometry(QtCore.QRect(10, 20, 491, 271))
         self.RectextEdit.setStyleSheet("")
         self.RectextEdit.setObjectName("RectextEdit")
         self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_3.setGeometry(QtCore.QRect(210, 430, 571, 251))
+        self.groupBox_3.setGeometry(QtCore.QRect(210, 320, 511, 181))
         self.groupBox_3.setObjectName("groupBox_3")
         self.SendtextEdit = QtWidgets.QTextEdit(self.groupBox_3)
-        self.SendtextEdit.setGeometry(QtCore.QRect(10, 20, 551, 221))
+        self.SendtextEdit.setGeometry(QtCore.QRect(10, 20, 491, 151))
         self.SendtextEdit.setObjectName("SendtextEdit")
         self.ASCII2_radioButton = QtWidgets.QRadioButton(self.centralwidget)
         self.ASCII2_radioButton.setGeometry(QtCore.QRect(30, 322, 53, 16))
@@ -252,9 +219,30 @@ class Ui_MainWindow(object):
         self.send_checkBox_2 = QtWidgets.QCheckBox(self.centralwidget)
         self.send_checkBox_2.setGeometry(QtCore.QRect(30, 350, 71, 16))
         self.send_checkBox_2.setObjectName("send_checkBox_2")
+        self.angle_textEdit = QtWidgets.QTextEdit(self.centralwidget)
+        self.angle_textEdit.setGeometry(QtCore.QRect(210, 510, 104, 31))
+        self.angle_textEdit.setObjectName("angle_textEdit")
+        self.speed_textEdit = QtWidgets.QTextEdit(self.centralwidget)
+        self.speed_textEdit.setGeometry(QtCore.QRect(210, 550, 104, 31))
+        self.speed_textEdit.setObjectName("speed_textEdit")
+        self.Coords_textEdit = QtWidgets.QTextEdit(self.centralwidget)
+        self.Coords_textEdit.setGeometry(QtCore.QRect(210, 590, 104, 31))
+        self.Coords_textEdit.setObjectName("Coords_textEdit")
+        self.GetLocaButton = QtWidgets.QPushButton(self.centralwidget)
+        self.GetLocaButton.setGeometry(QtCore.QRect(430, 590, 75, 31))
+        self.GetLocaButton.setObjectName("GetLocaButton")
+        self.anglelabel = QtWidgets.QLabel(self.centralwidget)
+        self.anglelabel.setGeometry(QtCore.QRect(330, 520, 71, 21))
+        self.anglelabel.setObjectName("anglelabel")
+        self.speedlabel = QtWidgets.QLabel(self.centralwidget)
+        self.speedlabel.setGeometry(QtCore.QRect(330, 560, 71, 21))
+        self.speedlabel.setObjectName("speedlabel")
+        self.coordlabel = QtWidgets.QLabel(self.centralwidget)
+        self.coordlabel.setGeometry(QtCore.QRect(330, 600, 71, 21))
+        self.coordlabel.setObjectName("coordlabel")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1008, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 764, 23))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -272,39 +260,17 @@ class Ui_MainWindow(object):
         self.Recive_groupBox.setTitle(_translate("MainWindow", "接收设置"))
         self.TCPgroupBox.setTitle(_translate("MainWindow", "网络通讯"))
         self.OpenPort.setText(_translate("MainWindow", "打开串口"))
-        self.OpenPort.clicked.connect(self.port_open)
-        
         self.ClosePort.setText(_translate("MainWindow", "关闭串口"))
-        self.ClosePort.clicked.connect(self.port_close)
-        
         self.OpenFile.setText(_translate("MainWindow", "打开文件"))
-        self.OpenFile.clicked.connect(self.open_file)
-        
         self.SendFile.setText(_translate("MainWindow", "发送文件"))
-        self.SendFile.clicked.connect(self.send_file)
-        
         self.OpenServer.setText(_translate("MainWindow", "开启服务器"))
-        self.OpenServer.clicked.connect(self.open_server)
-        
         self.ConnectServer.setText(_translate("MainWindow", "连接服务器"))
-        self.ConnectServer.clicked.connect(self.connect_server)
-        
         self.ClearRecieve.setText(_translate("MainWindow", "清除接收"))
         self.ClearSend.setText(_translate("MainWindow", "清除发送"))
         self.Send.setText(_translate("MainWindow", "发送"))
-        self.Send.clicked.connect(self.send_data)
-        
-        self.AngleButton.setText(_translate("MainWindow", "移动角度"))
-        self.AngleButton.clicked.connect(self.angle)
-        
-        self.velocityButton.setText(_translate("MainWindow", "移动速度"))
-        self.velocityButton.clicked.connect(self.speed)
-               
-        self.GetLocaButton.setText(_translate("MainWindow", "获取位置"))
+        self.sendMsgButton.setText(_translate("MainWindow", "发送信息"))
         self.PortgroupBox.setTitle(_translate("MainWindow", "串口设置"))
         self.StopButton.setText(_translate("MainWindow", "暂停"))
-        self.StopButton.clicked.connect(self.pause)
-        
         self.TCPLab.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">通讯方式</span></p></body></html>"))
         self.TCP_comboBox.setItemText(0, _translate("MainWindow", "TCP"))
         self.TCP_comboBox.setItemText(1, _translate("MainWindow", "UDP"))
@@ -358,54 +324,14 @@ class Ui_MainWindow(object):
         self.StatuLab.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">状态</span></p></body></html>"))
         self.CheckStaLab.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">串口状态</span></p></body></html>"))
         self.pushButton.setText(_translate("MainWindow", "检测串口"))
-        self.pushButton.clicked.connect(self.port_check)
-        
         self.groupBox.setTitle(_translate("MainWindow", "发送设置"))
         self.groupBox_2.setTitle(_translate("MainWindow", "接收区"))
         self.groupBox_3.setTitle(_translate("MainWindow", "发送区"))
         self.ASCII2_radioButton.setText(_translate("MainWindow", "ASCII"))
         self.Hex2_radioButton.setText(_translate("MainWindow", "Hex"))
         self.send_checkBox_2.setText(_translate("MainWindow", "自动发送"))
-    
-    def port_check(self):
-        Com_List = []
-        port_list = list(serial.tools.list_ports.comports())
-        self.Port_comboBox.clear()
-        for port in port_list:
-            Com_List.append(port[0])
-            self.Port_comboBox.addItem(port[0])
-        if (len(Com_List) == 0):
-            self.CheckStaLab.setText("没串口")
-        
-    def port_open(self):
-        pass
-    def port_close(self):
-        pass
-    def open_file(self):
-        pass
-    def send_file(self):
-        pass
-    def open_server(self):
-        pass
-    def connect_server(self):
-        pass
-    def send_data(self):
-        pass
-    def speed(self):
-        pass
-    def pause(self):
-        pass
-    def angle(self):
-        pass
-        
-                                
-#调用程序    
-if __name__ == '__main__':
-    
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)     
-    MainWindow.show() 
-    sys.exit(app.exec_()) 
+        self.GetLocaButton.setText(_translate("MainWindow", "获取位置"))
+        self.anglelabel.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">移动角度</span></p></body></html>"))
+        self.speedlabel.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">移动速度</span></p></body></html>"))
+        self.coordlabel.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">移动坐标</span></p></body></html>"))
 

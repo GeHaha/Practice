@@ -6,7 +6,7 @@ Created on Tue Oct  2 13:49:23 2018
 """
 import binascii
 import threading
-from car import Ui_MainWindow
+from SlamCar import Ui_MainWindow
 import serial.tools.list_ports
 from PyQt5.QtNetwork import QTcpSocket
 import socket
@@ -23,10 +23,18 @@ from time import ctime
 import math
 import multiprocessing
 
-class Tcp_UDP(Ui_MainWiondow):
-    socket = QTcpSocket()
-         
+#定义Tcp通讯类
+class TcpMsg(QtWidgets.QMainWindow,Ui_MainWindow):
+    socket = QTcpSocket() 
+    def __init__(self):
+        super(TcpMsg,self).__init__()
+        self.setupUi(self)
+        self.OpenServer.clicked.connect(self.open_server)
+        self.ConnectServer.clicked.connect(self.connect_server)       
+        self.Send.clicked.connect(self.send_data)
+            
     #作为客户端端，连接服务器
+   
     def connect_server(self):
         self.model = self.TCP_comboBox.currentText()
         self.BUFSIZE = 1024
@@ -99,6 +107,11 @@ class Tcp_UDP(Ui_MainWiondow):
                 self.server.close()
                 
                 
+if __name__ == "__main__":
+    app = QtWidgets.QMainWindow()
+    ui = TcpMsg()     
+    ui.show() 
+    sys.exit(app.exec_())          
                     
         
         

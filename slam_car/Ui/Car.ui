@@ -157,43 +157,17 @@
      <string>发送</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="AngleButton">
+   <widget class="QPushButton" name="sendMsgButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>430</x>
       <y>510</y>
       <width>75</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>移动角度</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="velocityButton">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>550</y>
-      <width>75</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>移动速度</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="GetLocaButton">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>550</y>
-      <width>75</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>获取位置</string>
+     <string>发送信息</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="PortgroupBox">
@@ -213,7 +187,7 @@
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>510</y>
+      <y>550</y>
       <width>75</width>
       <height>31</height>
      </rect>
@@ -749,17 +723,56 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="CoordsButton">
+   <widget class="QPushButton" name="GetLocaButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>430</x>
       <y>590</y>
       <width>75</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>移动坐标</string>
+     <string>获取位置</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="anglelabel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>520</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;移动角度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="speedlabel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>560</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;移动速度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="coordlabel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>600</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;移动坐标&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
   </widget>
@@ -784,12 +797,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>684</y>
+     <x>94</x>
+     <y>675</y>
     </hint>
     <hint type="destinationlabel">
      <x>282</x>
-     <y>379</y>
+     <y>323</y>
     </hint>
    </hints>
   </connection>
@@ -800,12 +813,12 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>342</x>
-     <y>681</y>
+     <x>184</x>
+     <y>675</y>
     </hint>
     <hint type="destinationlabel">
      <x>340</x>
-     <y>613</y>
+     <y>513</y>
     </hint>
    </hints>
   </connection>

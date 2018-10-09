@@ -5,7 +5,7 @@ Created on Mon Oct  1 11:16:50 2018
 @author: Gehaha
 """
 import sys
-from Slam_Car import Ui_MainWindow
+from SlamCar2 import Ui_MainWindow
 import binascii
 import threading
 import serial
@@ -14,12 +14,18 @@ from PyQt5 import QtCore,QtGui,QtWidgets
 from PyQt5.QtWidgets import QFileDialog ,QDialog,QWidget
 sys.path.append('D:\Practice\10.2')
 
-class serial_data(QtWidgets.QMainWindow,Ui_MainWindow):
-    def __init__(self):
-        super(serial_data,self).__init__()
+
+class SerialMsg(QtWidgets.QMainWindow,Ui_MainWindow):
+    ser = serial.Serial()
+    def __init__(self):  #析构函数，实例化后默认加载
+        super(SerialMsg,self).__init__()  #超级加载
         self.setupUi(self)
-
-
+        
+        self.OpenPort.clicked.connect(self.port_open)
+        self.ClosePort.clicked.connect(self.port_close)
+        self.OpenFile.clicked.connect(self.open_file)
+        self.SendFile.clicked.connect(self.send_file)
+        self.Send.clicked.connect(self.send_data)
         
     #检查串口
     def port_check(self):
@@ -31,8 +37,7 @@ class serial_data(QtWidgets.QMainWindow,Ui_MainWindow):
             self.Port_comboBox.addItem(port[0])
         if (len(Com_List) == 0):
             self.CheckStaLab.setText("没串口")
-            
-                
+                            
     #打开串口
     def port_open(self):
         self.ser.port = self.Port_comboBox.currentText()
@@ -57,7 +62,7 @@ class serial_data(QtWidgets.QMainWindow,Ui_MainWindow):
         if (self.ser.isOpen()):
             self.CheckStaLab.setText("关闭失败")
         else:
-            self.OpenPort.setEnabled(True)
+            self.ClosePort.setEnabled(True)
             self.CheckStaLab.setText("关闭成功")
     #发送数据
     def send_data(self):
@@ -109,6 +114,14 @@ class serial_data(QtWidgets.QMainWindow,Ui_MainWindow):
             with f:
                 data = f.read()
                 self.SendtextEdit.setText(data)
+#程序调用界面                
+#调用程序    
+if __name__ == '__main__':
     
-            
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = SerialMsg()  
+    ui.show() 
+    sys.exit(app.exec_()) 
+
 
