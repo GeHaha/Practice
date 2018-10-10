@@ -6,7 +6,7 @@ Created on Tue Oct  2 13:49:23 2018
 """
 import binascii
 import threading
-from SlamCar import Ui_MainWindow
+from SlamCar2 import Ui_MainWindow
 import serial.tools.list_ports
 from PyQt5.QtNetwork import QTcpSocket
 import socket
@@ -29,12 +29,10 @@ class TcpMsg(QtWidgets.QMainWindow,Ui_MainWindow):
     def __init__(self):
         super(TcpMsg,self).__init__()
         self.setupUi(self)
-        self.OpenServer.clicked.connect(self.open_server)
-        self.ConnectServer.clicked.connect(self.connect_server)       
+               
         self.Send.clicked.connect(self.send_data)
             
-    #作为客户端端，连接服务器
-   
+    #作为客户端端，连接服务器   
     def connect_server(self):
         self.model = self.TCP_comboBox.currentText()
         self.BUFSIZE = 1024
@@ -46,7 +44,6 @@ class TcpMsg(QtWidgets.QMainWindow,Ui_MainWindow):
         self.CheckStaLab.setText("连接成功")
         
     #要添一个发送请求的按钮
-    
     def send_request(self):
         self.model = self.TCP_comboBox.currentText()
         self.BUFSIZE = 1024
@@ -106,11 +103,11 @@ class TcpMsg(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.clientsock.close()
                 self.server.close()
                 
-                
+#调用界面                
 if __name__ == "__main__":
     app = QtWidgets.QMainWindow()
-    ui = TcpMsg()     
-    ui.show() 
+    tcpui = TcpMsg()     
+    tcpui.show() 
     sys.exit(app.exec_())          
                     
         

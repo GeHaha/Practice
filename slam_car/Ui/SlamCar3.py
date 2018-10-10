@@ -5,12 +5,10 @@
 # Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
-import sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
-    #相当于安装ui
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(764, 732)
@@ -87,17 +85,15 @@ class Ui_MainWindow(object):
         self.IPLab_2 = QtWidgets.QLabel(self.layoutWidget)
         self.IPLab_2.setObjectName("IPLab_2")
         self.formLayout_4.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.IPLab_2)
-        self.IP_comboBox = QtWidgets.QComboBox(self.layoutWidget)
-        self.IP_comboBox.setObjectName("IP_comboBox")
-        self.IP_comboBox.addItem("")
-        self.formLayout_4.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.IP_comboBox)
         self.IPLab = QtWidgets.QLabel(self.layoutWidget)
         self.IPLab.setObjectName("IPLab")
         self.formLayout_4.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.IPLab)
-        self.Port_comboBox = QtWidgets.QComboBox(self.layoutWidget)
-        self.Port_comboBox.setObjectName("Port_comboBox")
-        self.Port_comboBox.addItem("")
-        self.formLayout_4.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.Port_comboBox)
+        self.IPlineEdit = QtWidgets.QLineEdit(self.layoutWidget)
+        self.IPlineEdit.setObjectName("IPlineEdit")
+        self.formLayout_4.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.IPlineEdit)
+        self.PortlineEdit = QtWidgets.QLineEdit(self.layoutWidget)
+        self.PortlineEdit.setObjectName("PortlineEdit")
+        self.formLayout_4.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.PortlineEdit)
         self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget1.setGeometry(QtCore.QRect(30, 220, 151, 62))
         self.layoutWidget1.setObjectName("layoutWidget1")
@@ -254,7 +250,7 @@ class Ui_MainWindow(object):
         self.ClearRecieve.clicked.connect(self.RectextEdit.clear)
         self.ClearSend.clicked.connect(self.SendtextEdit.clear)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-    #释放ui
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -281,9 +277,9 @@ class Ui_MainWindow(object):
         self.Model_comboBox.setItemText(2, _translate("MainWindow", "UDP Server"))
         self.Model_comboBox.setItemText(3, _translate("MainWindow", "UDP Client"))
         self.IPLab_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">IP地址</span></p></body></html>"))
-        self.IP_comboBox.setItemText(0, _translate("MainWindow", "127.0.0.1"))
         self.IPLab.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">目的端口</span></p></body></html>"))
-        self.Port_comboBox.setItemText(0, _translate("MainWindow", "8000"))
+        self.IPlineEdit.setText(_translate("MainWindow", "127.0.0.1"))
+        self.PortlineEdit.setText(_translate("MainWindow", "8888"))
         self.ASCII1_radioButton.setText(_translate("MainWindow", "ASCII"))
         self.Hex_radioButton.setText(_translate("MainWindow", "Hex"))
         self.send_checkBox.setText(_translate("MainWindow", "显示发送"))
