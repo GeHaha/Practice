@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>764</width>
-    <height>732</height>
+    <width>777</width>
+    <height>771</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,91 +40,26 @@
      <string>网络通讯</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="OpenPort">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>540</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>打开串口</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ClosePort">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>540</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>关闭串口</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="OpenFile">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>570</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>打开文件</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="SendFile">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>570</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>发送文件</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="OpenServer">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>600</y>
+      <x>620</x>
+      <y>630</y>
       <width>75</width>
-      <height>23</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>开启服务器</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="ConnectServer">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>600</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>连接服务器</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="ClearRecieve">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>630</y>
-      <width>75</width>
-      <height>23</height>
+      <x>634</x>
+      <y>320</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -134,10 +69,10 @@
    <widget class="QPushButton" name="ClearSend">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>630</y>
+      <x>630</x>
+      <y>542</y>
       <width>75</width>
-      <height>23</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -147,27 +82,14 @@
    <widget class="QPushButton" name="Send">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>660</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>发送</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="sendMsgButton">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>510</y>
+      <x>210</x>
+      <y>540</y>
       <width>75</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>发送信息</string>
+     <string>发送</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="PortgroupBox">
@@ -181,19 +103,6 @@
     </property>
     <property name="title">
      <string>串口设置</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="StopButton">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>550</y>
-      <width>75</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>暂停</string>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -559,19 +468,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>660</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>检测串口</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
@@ -615,7 +511,7 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>320</y>
+      <y>350</y>
       <width>511</width>
       <height>181</height>
      </rect>
@@ -689,54 +585,21 @@
      <string>自动发送</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="angle_textEdit">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>510</y>
-      <width>104</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="speed_textEdit">
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>550</y>
+      <y>620</y>
       <width>104</width>
       <height>31</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="Coords_textEdit">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>590</y>
-      <width>104</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="GetLocaButton">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>590</y>
-      <width>75</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>获取位置</string>
     </property>
    </widget>
    <widget class="QLabel" name="anglelabel">
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>520</y>
+      <y>590</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -745,24 +608,11 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;移动角度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="speedlabel">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>560</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;移动速度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="coordlabel">
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>600</y>
+      <y>670</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -771,13 +621,202 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;移动坐标&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+   <widget class="QTextEdit" name="angle_textEdit">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>580</y>
+      <width>104</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="speedlabel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>630</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;移动速度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="Coords_textEdit">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>660</y>
+      <width>104</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="GetLocaButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>660</y>
+      <width>75</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>获取位置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="StopButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>620</y>
+      <width>75</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>暂停</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sendMsgButton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>580</y>
+      <width>75</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>发送指令</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="client_groupBox">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>580</y>
+      <width>101</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>客户端</string>
+    </property>
+    <widget class="QPushButton" name="ConnectServer">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>75</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>连接服务器</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="request_pushButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>75</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>发送请求</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="order_groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>550</y>
+      <width>191</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>命令区</string>
+    </property>
+    <widget class="QPushButton" name="CheckpushButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>20</y>
+       <width>75</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>检测串口</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="OpenPort">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>75</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>打开串口</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ClosePort">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>60</y>
+       <width>75</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>关闭串口</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="OpenFile">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>75</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>打开文件</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="SendFile">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>100</y>
+       <width>75</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>发送文件</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>764</width>
+     <width>777</width>
      <height>23</height>
     </rect>
    </property>
