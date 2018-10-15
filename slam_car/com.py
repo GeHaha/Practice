@@ -9,7 +9,6 @@ from SlamCar3 import Ui_MainWindow
 import binascii
 import threading
 import stopThreading
-
 import serial
 import socket
 from PyQt5 import QtCore,QtGui,QtWidgets
@@ -42,19 +41,17 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
         self.request_pushButton.clicked.connect(self.tcp_send)
         
         self.connect()
-        
-        
+                
     def connect(self):
        # 控件的信号
         self.signal_write_msg.connect(self.write_msg)
+       #signal_write_msg信号会触发这个函数 
     def write_msg(self,msg):
         #向接收区写入数据的方法
         self.RectextEdit.insertPlainText(msg)
         #滚动条移到结尾
-        self.RectextEdit.moveCursor(QtGui.QTextCursor.End)
+        self.RectextEdit.moveCursor(QtGui.QTextCursor.End)       
         
-        
-                            
     #打开串口
     def port_open(self):
         self.ser.port = self.port_comboBox.currentText()
@@ -79,14 +76,15 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
         if (self.ser.isOpen()):
             self.CheckStaLab.setText("关闭失败")
         else:
-            self.ClosePort.setEnabled(True)
+            self.OpenPort.setEnabled(True)
             self.CheckStaLab.setText("关闭成功")
     #发送数据
     def send_data(self):
         #串口接收数据
         if(self.ser.isOpen):          
-            if(self.Hex2_radioButton.isChecked()):
-                self.ser.write(binascii.a2b_hex(self.SendtextEdit.toPlainText()))
+            if(self.Hex2_radioButton.isChecked() or self.ASCII2_radioButton.isChecked()):
+                
+                self.ser.write(binascii.a2b_hex(self.SendtextEdit.toPlainText())) #b2a_hex相反
             else:
                 self.ser.write(self.SendtextEdit.toPlainText().encode('utf-8'))
             self.CheckStaLab.setText("发送成功")
@@ -95,7 +93,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
                   
     #接收数据
     def receive_data(self):
-        print("receive data threading is start")
+        self.RectextEdit.setText("receive data threading is start")
         res_data = ()
         #接收次数，初始为0，每接收一次增加一次
         num = 0 
@@ -104,7 +102,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
             if size:
                 res_data = self.ser.read_all()
                 if(self.Hex2_radioButton.isChecked()):
-                    self.RectextEdit.append(binascii.b2a_hex(res_data).decode())
+                    self.RectextEdit.append(binascii.b2a_hex(res_data).decode()) #res_data转换成二进制再用十六进制表示
                 else:
                     self.RectextEdit.append(res_data.decode())
                 self.RectextEdit.moveCursor(QtGui.QTextCursor.End)
@@ -126,7 +124,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
     def port_check(self):
         Com_List = []
         port_list = list(serial.tools.list_ports.comports())
-        #self.port_comboBox.clear()
+        self.port_comboBox.clear()
         for port in port_list:
             Com_List.append(port[0])
             self.port_comboBox.addItem(port[0])
@@ -180,8 +178,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
        # self.client.close()
    """         
     #功能函数，tcp服务端开启的方法
-    def tcp_server_start(self):
-        
+    def tcp_server_start(self):       
         self.tcp_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         #取消主动断开连接四次握手后的TIME_WAIT状态
         self.tcp_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSERADDR,1)
@@ -198,40 +195,8 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
             self.server_th = threading.Thread(target = self.tcp_server_concurrency)
             self.server_th.start()
             msg = 'TCP服务端正在监听端口：%s\n ' % str(port)
-            self.signal_write_msg.emit(msg)
-         
-        """
-        self.address = '127.0.0.1'
-        self.port = 8888
-        self.buffsize = 1024 #接收客户端发来的数据缓存区大小
-        self.server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        self.server.bind((self.address,self.port))
-        self.server.listen(4) #最大连接数
-        
-        #设置退出条件
-        stop_connect = False
-        while not stop_connect:
-            self.clientsock,self.clientaddress = self.server.accept()
-            self.RectextEdit.setText("等待连接客户端.....")
-            self.RectextEdit.setText("连接客户端：",self.clientaddress)
-            while True:
-                try:
-                    recvdata =self.clientsock.recv(self.buffsize.decode('utf-8'))
-                    self.RectextEdit.setText("连接客户端：",recvdata)
-                except:
-                    self.RectextEdit.setText("连接客户端：无数据")
-                    break
-                if not recvdata:
-                    break
-                sendata = "服务器端发来：" + recvdata
-                self.clientsock.recv(sendata.encode('utf-8'))
-                self.RectextEdit.setText(sendata)
-                stop_connect = '0'
-                if stop_connect:
-                    break
-                self.clientsock.close()
-                self.server.close()
-    """
+            self.signal_write_msg.emit(msg)         
+       
     def tcp_server_concurrenct(self):
         """
         功能函数，供创建线程的方法；
@@ -286,6 +251,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
                 self.client_th.start() 
                 msg = 'TCP客户端已连接IP:%s端口:%s\n' % address 
                 self.signal_write_msg.emit(msg)
+                
     def tcp_client_concurrency(self,address):
         #功能函数，用于TCP客户端创建子线程的方法，阻塞式接收
         while True:
@@ -300,6 +266,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
                 msg = '从服务器断开连接\n' 
                 self.signal_write_msg.emit(msg)
                 break
+            
     def tcp_send(self):
         #用于TCP服务端和TCP客户端发送消息
         if self.link is False:
@@ -322,6 +289,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
             except Exception as ret:
                 msg = '发送失败\n' 
                 self.signal_write_msg.emit(msg)
+                
     def  tcp_close(self):
         #关闭网络连接的方法
         if self.Model_comboBox.currentIndex() == 0:
@@ -359,6 +327,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
             else:
                 self.ser.write(self.SendtextEdit.toPlainText('0x10').encode('utf-8'))
             self.CheckStaLab.setText("开始获取位置信息")
+            
         else:
             self.CheckStaLab.setText("位置获取失败")
             
@@ -375,12 +344,12 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
             self.CheckLab.setText("发送成功")
         else:
             self.CheckLab.setText("发送失败")
-#程序调用界面                
+              
 #调用程序    
 if __name__ == '__main__':
     
     app = QtWidgets.QApplication(sys.argv) #外部参数列表
-    MainWindow = QtWidgets.QMainWindow()  # 
+    MainWindow = QtWidgets.QMainWindow()  
     ui = SignalLogic()  
     ui.show() 
     sys.exit(app.exec_())  #退出中使用的消息循环，结束消息循环时就退出程序
