@@ -52,9 +52,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
         self.RectextEdit.insertPlainText(msg)
         #滚动条移到结尾
         self.RectextEdit.moveCursor(QtGui.QTextCursor.End)
-        
-        
-                            
+                                          
     #打开串口
     def port_open(self):
         self.ser.port = self.port_comboBox.currentText()
@@ -79,14 +77,17 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
         if (self.ser.isOpen()):
             self.CheckStaLab.setText("关闭失败")
         else:
-            self.ClosePort.setEnabled(True)
+            self.OpenPort.setEnabled(True)
             self.CheckStaLab.setText("关闭成功")
     #发送数据
     def send_data(self):
         #串口接收数据
         if(self.ser.isOpen):          
             if(self.Hex2_radioButton.isChecked()):
-                self.ser.write(binascii.a2b_hex(self.SendtextEdit.toPlainText()))
+                self.ser.write(hex(self.SendtextEdit.toPlainText()))             
+                #self.ser.write(binascii.b2a_hqx(self.SendtextEdit.toPlainText()))
+            elif(self.ASCII2_radioButton.isChecked()):                
+                self.ser.write(binascii.a2b_hex(self.SendtextEdit.toPlainText()))                
             else:
                 self.ser.write(self.SendtextEdit.toPlainText().encode('utf-8'))
             self.CheckStaLab.setText("发送成功")
@@ -103,8 +104,13 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
             size = self.ser.inWaiting()
             if size:
                 res_data = self.ser.read_all()
-                if(self.Hex2_radioButton.isChecked()):
-                    self.RectextEdit.append(binascii.b2a_hex(res_data).decode())
+                if(self.Hex1_radioButton.isChecked()):
+                   # self.RectextEdit.append(binascii.b2a_hex(res_data).decode())
+                    #self.RectextEdit.append(binascii.b2a_hqx(res_data).decode())
+                   # self.RectextEdit.append(hex(res_data).decode())
+                    self.RectextEdit.append(float.hex(res_data).decode())
+                #elif(self.ASCII1_radioButton.isChecked()):
+                   # self.RectextEdit.append(binascii.b2a_hex(res_data).decode())                    
                 else:
                     self.RectextEdit.append(res_data.decode())
                 self.RectextEdit.moveCursor(QtGui.QTextCursor.End)
@@ -153,32 +159,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
         #连接服务器
         self.client.connect((self.address,self.port))
         self.CheckStaLab.setText("连接成功")
-    """    
-    #要添一个发送请求的按钮
-    def send_request(self):
-      
-        self.model = self.TCP_comboBox.currentText()
-        self.BUFSIZE = 1024
-        self.address = ('127.0.0.1')
-        self.port = 8888# 服务器的端口
-        self.client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-       
-        #while循环时为保证能持续进行数据传输
-        
-        while True:                            
-            #发送数据
-            if(self.Hex2_radioButton.isChecked()):
-                self.SendtextEdit.write(binascii.a2b_hex(self.SendtextEdit.toPlainText()))
-            else:
-                self.SendtextEdit.write(binascii.a2b_hex(self.SendtextEdit.toPlainText().encode('utf-8')))       
-           # recv_data = self.client.recv(self.BUFSIZE).decode('utf-8') # 接受服务器端的数据         
-            #if not recv_data:
-              #  break
-            #else:
-               # self.RectextEdit.append(recv_data)
-               # self.RectextEdit.setText(recv_data)
-       # self.client.close()
-   """         
+    
     #功能函数，tcp服务端开启的方法
     def tcp_server_start(self):
         
@@ -200,38 +181,7 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
             msg = 'TCP服务端正在监听端口：%s\n ' % str(port)
             self.signal_write_msg.emit(msg)
          
-        """
-        self.address = '127.0.0.1'
-        self.port = 8888
-        self.buffsize = 1024 #接收客户端发来的数据缓存区大小
-        self.server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        self.server.bind((self.address,self.port))
-        self.server.listen(4) #最大连接数
-        
-        #设置退出条件
-        stop_connect = False
-        while not stop_connect:
-            self.clientsock,self.clientaddress = self.server.accept()
-            self.RectextEdit.setText("等待连接客户端.....")
-            self.RectextEdit.setText("连接客户端：",self.clientaddress)
-            while True:
-                try:
-                    recvdata =self.clientsock.recv(self.buffsize.decode('utf-8'))
-                    self.RectextEdit.setText("连接客户端：",recvdata)
-                except:
-                    self.RectextEdit.setText("连接客户端：无数据")
-                    break
-                if not recvdata:
-                    break
-                sendata = "服务器端发来：" + recvdata
-                self.clientsock.recv(sendata.encode('utf-8'))
-                self.RectextEdit.setText(sendata)
-                stop_connect = '0'
-                if stop_connect:
-                    break
-                self.clientsock.close()
-                self.server.close()
-    """
+       
     def tcp_server_concurrenct(self):
         """
         功能函数，供创建线程的方法；
