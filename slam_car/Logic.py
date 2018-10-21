@@ -104,15 +104,12 @@ class SignalLogic(QtWidgets.QMainWindow,Ui_MainWindow):
             size = self.ser.inWaiting()
             if size:
                 res_data = self.ser.read_all()
-                if(self.Hex1_radioButton.isChecked()):
-                   # self.RectextEdit.append(binascii.b2a_hex(res_data).decode())
-                    #self.RectextEdit.append(binascii.b2a_hqx(res_data).decode())
-                   # self.RectextEdit.append(hex(res_data).decode())
-                    self.RectextEdit.append(float.hex(res_data).decode())
-                #elif(self.ASCII1_radioButton.isChecked()):
-                   # self.RectextEdit.append(binascii.b2a_hex(res_data).decode())                    
+                if(self.Hex_radioButton.isChecked()):
+                    self.RectextEdit.append(binascii.b2a_hex(res_data).decode())             
+                elif(self.ASCII1_radioButton.isChecked()):
+                   self.RectextEdit.append(binascii.b2a_hex(res_data).decode())                                  
                 else:
-                    self.RectextEdit.append(res_data.decode())
+                    self.RectextEdit.append(res_data.decode())                 
                 self.RectextEdit.moveCursor(QtGui.QTextCursor.End)
                 self.ser.flushInput()
                 num += 1
